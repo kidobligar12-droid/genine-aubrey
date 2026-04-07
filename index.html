@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Universe</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+        background: black;
+        color: white;
+        overflow-x: hidden;
+    }
+
+    /* Animated stars background */
+    body::before {
+        content: "";
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: url('https://www.transparenttextures.com/patterns/stardust.png');
+        animation: moveStars 100s linear infinite;
+        opacity: 0.4;
+        z-index: -1;
+    }
+
+    @keyframes moveStars {
+        from { background-position: 0 0; }
+        to { background-position: 10000px 5000px; }
+    }
+
+    header {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    .typing {
+        color: #00ffd5;
+        border-right: 2px solid #00ffd5;
+        padding-right: 5px;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(0,0,0,0.5);
+        padding: 10px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+    }
+
+    nav a {
+        color: white;
+        margin: 0 15px;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    nav a:hover {
+        color: #00ffd5;
+    }
+
+    section {
+        padding: 80px 20px;
+        text-align: center;
+    }
+
+    .card {
+        background: rgba(255,255,255,0.1);
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 400px;
+        backdrop-filter: blur(10px);
+    }
+
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        background: #00ffd5;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background: white;
+    }
+</style>
+</head>
+
+<body>
+
+ <nav>
+      <a href="about me.html">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="project.html">Projects</a>
+      <a href="gallary.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+<header>
+    <div>
+        <h1>Hello, I'm <span class="typing" id="typing"></span></h1>
+        <p>Welcome to my digital universe 🌌</p>
+    </div>
+</header>
+
+<section id="about">
+    <h2>About Me</h2>
+    <div class="card">
+        <p>
+            I create ideas from nothing and turn them into something real.
+            Coding is my playground and creativity is my tool.
+        </p>
+    </div>
+</section>
+
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="card">🚀 Project One</div>
+    <div class="card">🔥 Project Two</div>
+    <div class="card">⚡ Project Three</div>
+</section>
+
+<section id="contact">
+    <h2>Contact Me</h2>
+    <div class="card">
+        <p>Want to connect? Click below 👇</p>
+        <button onclick="contact()">Say Hello</button>
+    </div>
+</section>
+
+<script>
+    // Typing effect
+    const text = ["Your Name", "A Developer", "A Creator"];
+    let i = 0, j = 0, current = "", isDeleting = false;
+
+    function type() {
+        current = text[i];
+        document.getElementById("typing").textContent = current.substring(0, j);
+
+        if (!isDeleting && j < current.length) {
+            j++;
+        } else if (isDeleting && j > 0) {
+            j--;
+        } else {
+            isDeleting = !isDeleting;
+            if (!isDeleting) i = (i + 1) % text.length;
+        }
+
+        setTimeout(type, isDeleting ? 50 : 100);
+    }
+
+    type();
+
+    function contact() {
+        alert("Let's connect! 🚀");
+    }
+</script>
+
+</body>
+</html>

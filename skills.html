@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: radial-gradient(circle at top, #0f172a, #020617);
+        color: white;
+        text-align: center;
+    }
+
+    h1 {
+        margin: 40px 0;
+        font-size: 40px;
+    }
+
+    .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        padding: 20px;
+    }
+
+    .skill {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: conic-gradient(#00ffd5 0%, #00ffd5 0%, #1e293b 0%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        transition: 0.3s;
+        box-shadow: 0 0 20px rgba(0,255,213,0.2);
+    }
+
+    .skill:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 30px #00ffd5;
+    }
+
+    .skill span {
+        position: absolute;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .label {
+        margin-top: 10px;
+        font-size: 14px;
+        opacity: 0.8;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>⚡ My Skills</h1>
+
+<div class="skills-container">
+
+    <div>
+        <div class="skill" data-percent="90">
+            <span>0%</span>
+        </div>
+        <div class="label">HTML</div>
+    </div>
+
+    <div>
+        <div class="skill" data-percent="85">
+            <span>0%</span>
+        </div>
+        <div class="label">CSS</div>
+    </div>
+
+    <div>
+        <div class="skill" data-percent="75">
+            <span>0%</span>
+        </div>
+        <div class="label">JavaScript</div>
+    </div>
+
+    <div>
+        <div class="skill" data-percent="70">
+            <span>0%</span>
+        </div>
+        <div class="label">UI Design</div>
+    </div>
+
+</div>
+
+<script>
+const skills = document.querySelectorAll(".skill");
+
+skills.forEach(skill => {
+    let percent = skill.getAttribute("data-percent");
+    let span = skill.querySelector("span");
+    let count = 0;
+
+    let interval = setInterval(() => {
+        if (count >= percent) {
+            clearInterval(interval);
+        } else {
+            count++;
+            span.textContent = count + "%";
+            skill.style.background = `conic-gradient(#00ffd5 ${count}%, #1e293b ${count}%)`;
+        }
+    }, 20);
+});
+</script>
+
+</body>
+</html>
